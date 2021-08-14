@@ -1,12 +1,11 @@
+import './App.scss'
+import Header from './Header/Header'
 
-import './App.sass'
-
-function App() {
+const App: React.FC = () => {
     return (
-        <div className='page'>
-            <header className='header'>
-
-            </header>
+        <div className='wrapper'>
+            <Header />
+            <div className='container'></div>
         </div>
     )
 }
