@@ -1,5 +1,3 @@
-@import '../StyleVars';
-
 .header {
     padding: 0 30px;
     position: absolute;
@@ -33,7 +31,6 @@
             animation: rotate 0.5s linear;
         }
         &Svg {
-            fill: $White;
             transition: all 0.2s;
         }
     }
@@ -44,7 +41,7 @@
             transform: scale(1.2);
         }
         &Svg {
-            fill: $White;
+
             transition: all 0.2s;
         }
     }
@@ -64,7 +61,6 @@
     &__line {
         width: 3px;
         height: 30px;
-        background-color: $White;
         border-radius: 20px;
         position: absolute;
         top: 50%;
