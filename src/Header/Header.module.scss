@@ -1,0 +1,97 @@
+@import '../StyleVars';
+
+.header {
+    padding: 0 30px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0);
+        }
+        30% {
+            transform: rotate(30deg);
+        }
+        60% {
+            transform: rotate(-30deg);
+        }
+        100% {
+            transform: rotate(0);
+        }
+    }
+
+    &__switchTheme {
+        cursor: pointer;
+        &:hover &Svg {
+            animation: rotate 0.5s linear;
+        }
+        &Svg {
+            fill: $White;
+            transition: all 0.2s;
+        }
+    }
+
+    &__icon {
+        cursor: pointer;
+        &:hover &Svg {
+            transform: scale(1.2);
+        }
+        &Svg {
+            fill: $White;
+            transition: all 0.2s;
+        }
+    }
+
+    &__menu {
+        cursor: pointer;
+        position: relative;
+        height: 100%;
+        width: 30px;
+        &:hover .header__line::after {
+            transform: translateY(5px);
+        }
+        &:hover .header__line::before {
+            transform: translateY(5px);
+        }
+    }
+    &__line {
+        width: 3px;
+        height: 30px;
+        background-color: $White;
+        border-radius: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        right: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        &::after {
+            content: '';
+            width: 3px;
+            height: 30px;
+            background-color: inherit;
+            position: absolute;
+            border-radius: 20px;
+            left: 10px;
+            transform: translateY(-5px);
+            transition: all 0.2s;
+        }
+        &::before {
+            content: '';
+            width: 3px;
+            height: 30px;
+            background-color: inherit;
+            position: absolute;
+            border-radius: 20px;
+            right: 10px;
+            transform: translateY(-5px);
+            transition: all 0.2s;
+        }
+    }
+}
