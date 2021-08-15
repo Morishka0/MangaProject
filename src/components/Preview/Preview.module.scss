@@ -1,0 +1,32 @@
+@import '../../StyleVars';
+$randomNumber: random(500);
+.preview {
+    padding-top: 100px;
+    &__items {
+        display: flex;
+        margin-bottom: 150px;
+        height: 600px;
+    }
+    &__item {
+        height: 570px;
+        width: 150px;
+        margin: 0 25px;
+        position: relative;
+        transform: translate();
+        background-color: rgb(207, 207, 207);
+        background-size: cover;
+        transition: 0.3s linear;
+        background-position: center;
+        cursor: pointer;
+
+        &:hover {
+            border-radius: 20px;
+            width: 270px;
+        }
+    }
+    &__title {
+        transition: all 0.5s linear;
+        text-align: center;
+        font-size: 32px;
+    }
+}

@@ -8,11 +8,11 @@ import { Field, ObjectType } from 'type-graphql'
 export class MangaItem {
     @Field()
     @prop()
-    title: string
+    title!: string
 
     @Field()
     @prop()
-    img: string
+    img!: string
 
 
 

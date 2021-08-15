@@ -3,7 +3,7 @@ import { buildSchema } from 'type-graphql'
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
-import PreviewResolver from './Resolvers/PreviewResolver'
+import PreviewResolver from './src/Resolvers/PreviewResolver'
 
 const app = express()
 
