@@ -1,11 +1,16 @@
 import { useQuery } from '@apollo/client'
 import React from 'react'
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { GET_PREVIEW_ITEM } from '../../GQL/getPreviewItems'
 import { IPReviewItems } from '../../InterfacesForGQL/IPreviewItems'
 import classes from './Preview.module.scss'
 
-const Preview: React.FC = () => {
+type PropsType = {
+    menu: boolean
+}
+
+const Preview: React.FC<PropsType> = ({ menu }) => {
     const [title, setTitle] = useState('')
     const { data } = useQuery<IPReviewItems>(GET_PREVIEW_ITEM)
     let initialTranslate = 20
@@ -16,15 +21,29 @@ const Preview: React.FC = () => {
             initialTranslate -= 30
         }
         return (
-            <div
-                onMouseEnter={() => setTitle(item.title)}
-                onMouseLeave={() => setTitle('')}
+            <NavLink
+                onMouseEnter={() => {
+                    setTimeout(() => {
+                        setTitle(item.title)
+                    }, 100)
+                }}
+                onMouseLeave={() => {
+                    setTimeout(() => {
+                        setTitle('')
+                    }, 100)
+                }}
+                to={`manga/mangaItem/${title}`}
                 style={{
-                    backgroundImage: `url(${item.img})`,
                     transform: `translateY(${initialTranslate}px)`,
                 }}
-                className={classes.preview__item}
-            ></div>
+                className={
+                    menu
+                        ? classes.preview__item + ' ' + classes.active
+                        : classes.preview__item
+                }
+            >
+                <img src={item.img} className={classes.preview__img} alt='' />
+            </NavLink>
         )
     })
     return (

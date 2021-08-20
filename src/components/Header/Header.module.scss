@@ -29,6 +29,8 @@
 
     &__switchTheme {
         cursor: pointer;
+        z-index: 15;
+
         &:hover &Svg {
             animation: rotate 0.5s linear;
         }
@@ -39,7 +41,10 @@
     }
 
     &__icon {
+        z-index: 15;
+
         cursor: pointer;
+
         &:hover &Svg {
             transform: scale(1.2);
         }
@@ -50,15 +55,29 @@
     }
 
     &__menu {
+        z-index: 15;
         cursor: pointer;
         position: relative;
         height: 100%;
-        width: 30px;
+        width: 25px;
         &:hover .header__line::after {
             transform: translateY(5px);
         }
         &:hover .header__line::before {
             transform: translateY(5px);
+        }
+        &Open {
+            position: absolute;
+            width: 100%;
+            height: 0px;
+            opacity: 0.97;
+            background-color: rgb(26, 26, 26);
+            transition: 0.2s linear;
+            left: 0;
+            z-index: 10;
+            &.active {
+                height: 500px;
+            }
         }
     }
     &__line {

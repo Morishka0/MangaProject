@@ -1,5 +1,30 @@
 @import '../../StyleVars';
 $randomNumber: random(500);
+
+@keyframes bounce {
+    0% {
+        transform: translateY(inherit);
+    }
+    50% {
+        transform: translateY(200px);
+    }
+    100% {
+        transform: translateY(50px);
+        z-index: 20;
+    }
+}
+@keyframes bouncePrview {
+    0% {
+        transform: translateY(inherit);
+    }
+    50% {
+        transform: translateY(200px);
+    }
+    100% {
+        transform: translateY(50px);
+        z-index: 20;
+    }
+}
 .preview {
     padding-top: 100px;
     &__items {
@@ -12,21 +37,38 @@ $randomNumber: random(500);
         width: 150px;
         margin: 0 25px;
         position: relative;
-        transform: translate();
-        background-color: rgb(207, 207, 207);
+        background-color: rgb(146, 146, 146);
         background-size: cover;
-        transition: 0.3s linear;
+        transition: 0.2s ease-out;
+        transition-delay: 0.1s;
         background-position: center;
         cursor: pointer;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        animation: bouncePrview 0.6s reverse forwards;
 
         &:hover {
             border-radius: 20px;
             width: 270px;
+            &.active {
+                animation: bounce 0.6s linear forwards;
+            }
+        }
+
+        &:hover .preview__img {
+            opacity: 1;
         }
     }
     &__title {
-        transition: all 0.5s linear;
+        transition: all 0.3s linear;
         text-align: center;
         font-size: 32px;
+    }
+    &__img {
+        height: 580px;
+        width: auto;
+        opacity: 0.8;
+        transition: 0.2s linear;
     }
 }
