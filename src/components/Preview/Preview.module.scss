@@ -29,8 +29,8 @@ $randomNumber: random(500);
     padding-top: 100px;
     &__items {
         display: flex;
-        margin-bottom: 150px;
-        height: 600px;
+        min-height: 710px;
+        margin-bottom: 50px;
     }
     &__item {
         height: 570px;
@@ -64,11 +64,25 @@ $randomNumber: random(500);
         transition: all 0.3s linear;
         text-align: center;
         font-size: 32px;
+        line-height: 1;
     }
     &__img {
         height: 580px;
         width: auto;
         opacity: 0.8;
         transition: 0.2s linear;
+    }
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    &__catalog {
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+        text-decoration: none;
+        
     }
 }

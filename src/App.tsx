@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import React, { useState } from 'react'
 import './App.scss'
@@ -19,15 +18,23 @@ const App: React.FC = () => {
     return (
         <ApolloProvider client={client}>
             <BrowserRouter>
-                <div className='wrapper' style={{
-                backgroundColor: theme.mainColor,
-                color: theme.textColor,
-            }}>
-                    <Header setMenu={setMenu} menu={menu} setTheme={setTheme} theme={theme} />
+                <div
+                    className='wrapper'
+                    style={{
+                        backgroundColor: theme.mainColor,
+                        color: theme.textColor,
+                    }}
+                >
+                    <Header
+                        setMenu={setMenu}
+                        menu={menu}
+                        setTheme={setTheme}
+                        theme={theme}
+                    />
                     <div className='container'>
                         <Route
                             path={'/'}
-                            render={() => <Preview menu={menu} />}
+                            render={() => <Preview menu={menu} theme={theme} />}
                             exact
                         />
                     </div>

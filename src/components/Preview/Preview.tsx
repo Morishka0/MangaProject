@@ -6,13 +6,25 @@ import { GET_PREVIEW_ITEM } from '../../GQL/getPreviewItems'
 import { IPReviewItems } from '../../InterfacesForGQL/IPreviewItems'
 import classes from './Preview.module.scss'
 
-type PropsType = {
-    menu: boolean
+type TypeTheme = {
+    theme: string
+    mainColor: string
+    iconColor: string
+    textColor: string
+    openHeader: string
 }
 
-const Preview: React.FC<PropsType> = ({ menu }) => {
+type PropsType = {
+    menu: boolean
+    theme: TypeTheme
+}
+
+const Preview: React.FC<PropsType> = ({ menu, theme }) => {
     const [title, setTitle] = useState('')
     const { data } = useQuery<IPReviewItems>(GET_PREVIEW_ITEM)
+
+    console.log(data)
+
     let initialTranslate = 20
     const previewItems = data?.getPreviewItems.map((item, index) => {
         if (index <= 3) {
@@ -49,11 +61,17 @@ const Preview: React.FC<PropsType> = ({ menu }) => {
     return (
         <main className={classes.preview}>
             <div className={classes.preview__items}>{previewItems}</div>
-            <div
-                className={classes.preview__title}
-                style={{ opacity: title ? 1 : 0 }}
-            >
-                {title}
+            <div className={classes.preview__footer}>
+                <div className={classes.preview__title}>
+                    {title ? title : 'Мариночка красотка'}
+                </div>
+                <NavLink
+                    style={{ color: theme.iconColor }}
+                    to='/manga'
+                    className={classes.preview__catalog}
+                >
+                    Каталог стрелка
+                </NavLink>
             </div>
         </main>
     )

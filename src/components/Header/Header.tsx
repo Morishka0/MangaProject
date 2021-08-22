@@ -1,20 +1,40 @@
 import { NavLink } from 'react-router-dom'
+import { darkTheme, lightTheme } from '../../Themes'
 import classes from './Header.module.scss'
+
+type TypeTheme = {
+    theme: string
+    mainColor: string
+    iconColor: string
+    textColor: string
+    openHeader: string
+}
 
 type PropsType = {
     menu: boolean
     setMenu: React.Dispatch<React.SetStateAction<boolean>>
+    theme: TypeTheme
+    setTheme: React.Dispatch<React.SetStateAction<TypeTheme>>
 }
 
-const Header: React.FC<PropsType> = ({ setMenu, menu }) => {
+const Header: React.FC<PropsType> = ({ setMenu, menu, theme, setTheme }) => {
+    const switchTheme = () => {
+        if (theme.theme === 'dark') {
+            setTheme(lightTheme)
+        } else {
+            setTheme(darkTheme)
+        }
+    }
+
     return (
         <header className={classes.header}>
-            <div className={classes.header__switchTheme}>
+            <div className={classes.header__switchTheme} onClick={switchTheme}>
                 <svg
                     width='30'
                     height='30'
                     viewBox='0 0 30 30'
                     className={classes.header__switchThemeSvg}
+                    fill={theme.iconColor}
                 >
                     <path d='M25.5924 4.40764C19.7166 -1.46822 10.2854 -1.47021 4.40764 4.40764C-1.46822 10.2834 -1.47021 19.7146 4.40764 25.5924C10.2834 31.4682 19.7146 31.4702 25.5924 25.5924C31.4682 19.7166 31.4702 10.2854 25.5924 4.40764ZM15 28.2396C7.69966 28.2396 1.76042 22.3003 1.76042 15C1.76042 7.69966 7.69966 1.76042 15 1.76042C22.3003 1.76042 28.2396 7.69966 28.2396 15C28.2396 22.3003 22.3003 28.2396 15 28.2396Z' />
                     <path d='M19.3148 10.1351C18.9518 9.81294 18.3964 9.84604 18.0743 10.2091C17.7521 10.572 17.7852 11.1275 18.1482 11.4496C19.1631 12.3503 19.7452 13.6444 19.7452 15.0001C19.7452 17.6166 17.6166 19.7453 15 19.7453C12.3835 19.7453 10.2549 17.6166 10.2549 15.0001C10.2549 13.631 10.8466 12.3284 11.8783 11.4263C12.2436 11.1068 12.2809 10.5517 11.9614 10.1863C11.6419 9.82097 11.0868 9.78383 10.7214 10.1033C9.30802 11.3391 8.49736 13.1239 8.49736 15.0001C8.49736 18.5857 11.4144 21.5027 15 21.5027C18.5856 21.5027 21.5026 18.5857 21.5026 15.0001C21.5027 13.1422 20.7052 11.3691 19.3148 10.1351Z' />
@@ -27,6 +47,7 @@ const Header: React.FC<PropsType> = ({ setMenu, menu }) => {
                     height='50'
                     viewBox='0 0 677.000000 369.000000'
                     className={classes.header__iconSvg}
+                    fill={theme.iconColor}
                 >
                     <g transform='translate(0.000000,369.000000) scale(0.100000,-0.100000)'>
                         <path
@@ -54,7 +75,10 @@ const Header: React.FC<PropsType> = ({ setMenu, menu }) => {
                 className={classes.header__menu}
                 onClick={() => setMenu(!menu)}
             >
-                <div className={classes.header__line}></div>
+                <div
+                    className={classes.header__line}
+                    style={{ backgroundColor: theme.iconColor }}
+                ></div>
             </div>
             <div
                 className={
@@ -62,6 +86,7 @@ const Header: React.FC<PropsType> = ({ setMenu, menu }) => {
                         ? classes.header__menuOpen + ' ' + classes.active
                         : classes.header__menuOpen
                 }
+                style={{ backgroundColor: theme.openHeader }}
             ></div>
         </header>
     )
