@@ -1,4 +1,6 @@
+import { MangaItemType } from './MangaItemType'
+
 export type PreviewItemType = {
-    title: string,
+    mangaItem: MangaItemType
     img: string
 }

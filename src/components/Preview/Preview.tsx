@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import React from 'react'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { GET_PREVIEW_ITEM } from '../../GQL/getPreviewItems'
+import { GET_PREVIEW_ITEMS } from '../../GQL/getPreviewItems'
 import { IPReviewItems } from '../../InterfacesForGQL/IPreviewItems'
 import classes from './Preview.module.scss'
 
@@ -19,11 +19,10 @@ type PropsType = {
     theme: TypeTheme
 }
 
-const Preview: React.FC<PropsType> = ({ menu, theme }) => {
+const Preview: React.FC<PropsType> = React.memo(({ menu, theme }) => {
     const [title, setTitle] = useState('')
-    const { data } = useQuery<IPReviewItems>(GET_PREVIEW_ITEM)
-
-    console.log(data)
+    const { data } = useQuery<IPReviewItems>(GET_PREVIEW_ITEMS)
+    console.log(data?.getPreviewItems)
 
     let initialTranslate = 20
     const previewItems = data?.getPreviewItems.map((item, index) => {
@@ -36,7 +35,7 @@ const Preview: React.FC<PropsType> = ({ menu, theme }) => {
             <NavLink
                 onMouseEnter={() => {
                     setTimeout(() => {
-                        setTitle(item.title)
+                        setTitle(item.mangaItem.title)
                     }, 100)
                 }}
                 onMouseLeave={() => {
@@ -44,7 +43,7 @@ const Preview: React.FC<PropsType> = ({ menu, theme }) => {
                         setTitle('')
                     }, 100)
                 }}
-                to={`manga/mangaItem/${title}`}
+                to={`catalog/item/${item.mangaItem.query}`}
                 style={{
                     transform: `translateY(${initialTranslate}px)`,
                 }}
@@ -63,11 +62,11 @@ const Preview: React.FC<PropsType> = ({ menu, theme }) => {
             <div className={classes.preview__items}>{previewItems}</div>
             <div className={classes.preview__footer}>
                 <div className={classes.preview__title}>
-                    {title ? title : 'Мариночка красотка'}
+                    {title ? title : 'Да'}
                 </div>
                 <NavLink
                     style={{ color: theme.iconColor }}
-                    to='/manga'
+                    to='/catalog'
                     className={classes.preview__catalog}
                 >
                     Каталог стрелка
@@ -75,6 +74,6 @@ const Preview: React.FC<PropsType> = ({ menu, theme }) => {
             </div>
         </main>
     )
-}
+})
 
 export default Preview

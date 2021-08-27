@@ -5,6 +5,7 @@ import Header from './components/Header/Header'
 import Preview from './components/Preview/Preview'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { darkTheme } from './Themes'
+import Catalog from './components/Catalog/Catalog'
 
 const client = new ApolloClient({
     uri: 'http://localhost:4000/graphql',
@@ -35,6 +36,11 @@ const App: React.FC = () => {
                         <Route
                             path={'/'}
                             render={() => <Preview menu={menu} theme={theme} />}
+                            exact
+                        />
+                        <Route
+                            path={'/catalog'}
+                            render={() => <Catalog />}
                             exact
                         />
                     </div>
