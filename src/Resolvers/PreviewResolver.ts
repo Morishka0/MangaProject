@@ -11,13 +11,12 @@ class PreviewResolver {
 
     @Query(() => [PreviewItem])
     async getPreviewItems(): Promise<PreviewItem[]> {
-        return PreviewItemModel.find({})
+        return PreviewItemModel.find().populate("mangaItem")
     }
 
-
     @Mutation(() => [PreviewItem])
-    async addPreviewItem(@Arg("previewItemData", () => [PreviewItemInput]) PreviewItem: PreviewItemInput[]): Promise<PreviewItem[]> {
-        const items = PreviewItemModel.insertMany(PreviewItem)
+    async addPreviewItem(@Arg("previewItemData", () => [PreviewItemInput]) PreviewItems: PreviewItemInput[]): Promise<PreviewItem[]> {
+        const items = PreviewItemModel.insertMany(PreviewItems)
         return items
     }
 }

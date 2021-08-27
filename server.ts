@@ -4,6 +4,8 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import PreviewResolver from './src/Resolvers/PreviewResolver'
+import MangaResolver from './src/Resolvers/MangaResolver'
+import FiltersResolver from './src/Resolvers/FiltersResolver'
 
 const app = express()
 
@@ -12,7 +14,7 @@ app.use(cors())
 async function start() {
     try {
         const schema = await buildSchema({
-            resolvers: [PreviewResolver],
+            resolvers: [PreviewResolver, MangaResolver, FiltersResolver],
         })
         const apolloServer = new ApolloServer({ schema })
         await apolloServer.start()

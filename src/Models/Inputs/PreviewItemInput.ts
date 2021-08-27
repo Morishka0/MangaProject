@@ -1,6 +1,7 @@
 import { PreviewItem } from '../PreviewItem'
 import { Field, InputType } from 'type-graphql'
 import "reflect-metadata"
+import { Types } from 'mongoose'
 
 @InputType()
 export class PreviewItemInput implements Partial<PreviewItem>  {
@@ -9,6 +10,6 @@ export class PreviewItemInput implements Partial<PreviewItem>  {
     title!: string
 
     @Field(() => String)
-    img!: string
+    mangaItem!: Types.ObjectId
 }
 
