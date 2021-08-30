@@ -34,21 +34,25 @@ const App: React.FC = () => {
                         theme={theme}
                     />
                     <div className='container'>
-                        <Route
-                            path={'/'}
-                            render={() => <Preview menu={menu} theme={theme} />}
-                            exact
-                        />
-                        <Route
-                            path={'/catalog'}
-                            render={() => <Catalog />}
-                            exact
-                        />
-                        <Route
-                            path={'/catalog/item/:title?'}
-                            render={() => <MangaItem />}
-                            strict
-                        />
+                        <div className='content'>
+                            <Route
+                                path={'/'}
+                                render={() => (
+                                    <Preview menu={menu} theme={theme} />
+                                )}
+                                exact
+                            />
+                            <Route
+                                path={'/catalog'}
+                                render={() => <Catalog />}
+                                exact
+                            />
+                            <Route
+                                path={'/catalog/item/:title?'}
+                                render={() => <MangaItem />}
+                                strict
+                            />
+                        </div>
                     </div>
                 </div>
             </BrowserRouter>
