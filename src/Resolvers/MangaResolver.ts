@@ -11,12 +11,18 @@ class MangaResolver {
 
     @Query(() => [MangaItem])
     async getMangaItems(): Promise<MangaItem[]> {
-        return MangaItemModel.find({}).populate("type").populate("status").populate("genres").populate("mainGenre")
+        return await MangaItemModel.find({ }).populate("type").populate("status").populate("genres").populate("mainGenre")
+    }
+
+
+    @Query(() => MangaItem)
+    async getMangaItem(@Arg('query') query: string): Promise<MangaItem | null> {
+        return await MangaItemModel.findOne({ query }).populate("type").populate("status").populate("genres").populate("mainGenre")
     }
 
     @Mutation(() => [MangaItem])
     async addMangaItem(@Arg("mangaItemData", () => [MangaItemInput]) MangaItem: MangaItemInput[]): Promise<MangaItem[]> {
-        const items = MangaItemModel.insertMany(MangaItem)
+        const items = await MangaItemModel.insertMany(MangaItem)
         return items
     }
 }
